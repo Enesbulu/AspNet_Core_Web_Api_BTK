@@ -1,0 +1,16 @@
+	Bu proje içerisinde deðinilen konular:
+
+- Kitap modal yapýsý oluþturuldu.
+- Kitap için bir Action metod tanýmlanmasý yapýldý.
+- Static locale bir data sýnýfý oluþturuldu. Kullanýlacak demo verilerin olmasý ve eriþilebilirliði basit olmasý amacýyla.
+- Getlist mantýðý ile çalýþan bir HTTPGet Action metod yazýldý.
+- GetId þeklinde Id ile listeleme iþlemi için action method yazýldý.
+- Yazýlan getId action metodun aldýðý parametre için 'FromRoute' þeklinde Routing binding iþlemi gerçekleþtirilerek metodun iliþkilendirilmesi ve çalýþmasý için kesinlik/saðlamlýk kazandýrýldý.
+- Post iþlemi ve iþlem sýrasunda try-catch kontrolü saðlandý.
+- Put iþlemi için bir action metod yazýldý. Verilen id bilgisi ile güncel bilgilerin eþleþmesi ve verilen id biligisi ile eþleþen bir entity varlýðý kontrolü saðlandý ve uygun htppStatus kodlarý ile return yapýldý.
+- Genel olarak listeyi/tüm elemanlarý silen AllDelete metodu HttpDelete olarak yazýldý.
+- Verilen id bilgisine göre iliþkili entity bilgisini silen ve iþlem baþarý durumuna göre geriye status döndüren HttpDelete metodu yazýldý.
+- Patch iþlemi için gerekli olan 'Microsoft.AspNetCore.Mvc.NewtonsoftJson' ve 'Microsoft.AspNetCore.JsonPatch' paket eklenmesi yapýldý.
+- Program.cs içeriside, eklediðimiz JsonPatch  paketinin dahil edilmesi yapýldý.
+- HttpPatch ile parçalý olarak verilen id bilgisine ait seçilen verinin ilgili kýsýmlarýnýn güncellenmesi yapýldý.
+

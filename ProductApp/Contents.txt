@@ -1,0 +1,10 @@
+	Bu proje içerisinde deðinilen konular:
+
+- Basit bir model ve contoller yapýsý oluþturma.
+- Logger ile 'Dependency Injection' kullanýmýna örnek yaklaþým.
+- Logger kullanýmý.
+- Action metod ile veri döndürülmesi ve ekrana logger.info basýlmasý.
+- Logger iþlemlerinin (ClearProviders,AddConsole,AddDebug) Program.cs tarafýnda servis düzeyinde tanýmlanmasý ve configurasyonlarýnýn yapýlmasý.
+- appsettings.json üzerinde, Console loglarýnýn Microsoft paketleri için warning seviyesine çekilmesi ve loglamalarda temiz, anlaþýlýr seviyede yapýlandýrýlmasý.
+- Farklý ortam profilleri oluþturulmasý ve bu profiller için farklý seviyede log iþlemleri tanýmlanmasý saðlandý.-- appsettings.[].json dosyalarý ve launchSettings.json üzerinde bu iþlemler gerçekleþtirildi.--
+
