@@ -1,0 +1,17 @@
+	Bu proje içerisinde deðinilen konular:
+	
+- Örnek olarak Book model classý oluþturuldu.
+- Bir EfRepository class oluþturuldu.
+- Microsoft.EntityFrameworkCore paket kurulumu yapýlýr.
+- Appsettings.json içerisinde ConnectionString tanýmlamasý yapýldý.
+- Microsoft.EntityFrameworkCore.SqlServer paket kurulumu yapýlýr.
+- Paket kurulumu sonrasý Program.cs içerisinde dbContext tanýmý yapýldý.
+- IOC(Inversion of Control - Konrolü Tersine Çevirme) üzerinden ConnectionString tanýmlamamýz kayýt edildi.	//=> IOC Ýncelemesi yapýlmasý gerekir.	
+- Microsoft.EntityFrameworkCore.Tools paket kurulumu yapýlýr.
+- Microsoft.EntityFrameworkCore.Design paket kurulumu yapýlýr.
+- Migration iþlemi gerçekleþtirildi.
+- Config > BookConfig dosyasý içerisinde Config verileri ve  seedData oluþturuldu.
+- Repository içerisinde tanýmlama yapýldý.
+- Yeni seedDatalar ile migration yapýldý.
+- BookController dosyasý oluþturuldu ve action metodlar yazýldý. DEpendency Injection yapýldý.
+- Veri manipulasyonu için action metodlar yazýldý. Gerekli paketler indirildi ve implement edildi.
