@@ -1,10 +1,9 @@
-﻿namespace bsStoreApp.WebApi.Models
+﻿namespace Entities.Models
 {
     public class Book
     {
         public int Id { get; set; }
-        public string Title { get; set; }
+        public String Title { get; set; }
         public decimal Price { get; set; }
-
     }
 }

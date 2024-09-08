@@ -1,0 +1,17 @@
+	Klasör içerisinde yapýlan iþlemler:
+
+- Entity yapýsý bir ClassLibrary olarak ayrý katmana çekildi.
+- Repository klasörü ClassLibrary olarak ayrý bir katmana çekildi.
+- Repository katmanýnda Base bir IRepository interface tanýmlamasý yapýldý.
+- Api katmanýnda bulunan Config,Respository yapýlarý Repositories katmanýna çekildi.
+- Interface olarak bir Repository tanýmlamasý yapýldý.
+- Base bir abstract class tanýmlamasý yapýldý ve interface den miras alýnarak temel crud iþlemler için tanýmlamalar yapýldý.
+- Book için base bir abstract repository yazýldý ve Ef içerisinde Book repositorye miras verildi.
+- Book Repository içerisinde kendi özel crud metodlarý yazýldý.
+- Lazy Loading ve Eager Loading iþlemlerinin üzerinde duruldu.
+- Extensionlar için static bir class tanýmlamasý Api katmanýnda yapýldý. Burada ConnectionString için bir extension yazýldý.
+- Yazýlan extesion ile manager yapýsýs scoped olarak serviceCollection üzerinden çözümlendi. Bu þekilde yapýlan db iþlemleri manager üzerinden kontrol edilebilecek. Interfaceler üzerinden iþlem görmekte olacak.
+
+-..
+-Yapýlan iþlemlerle WepAPI katmanýnda bulunan bütün klasörler ayrý olarak katmanlara ayrýldý. Bu katmanlarda Soyutlamalar ve manager/repository ile iþlemlere alýndý. Lazy Loding iþlemleri yapýldý. controller yapýsý ayrý bir katmana alýndý. Son yapýlan özellikle birlikte migration iþlemlerini tamamen webApi katmaný üzerinde çalýþacak þekilde configuration yapýldý.
+-Entity katmaný, Repository Katmaný, Service Katmaný, Presentation Katmaný ve WebApi Katmaný olarak ayrýþtýrýldý.

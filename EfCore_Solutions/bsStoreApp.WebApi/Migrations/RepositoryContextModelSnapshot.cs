@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using bsStoreApp.WebApi.Repositories;
+using Repositories.EFCore;
 
 #nullable disable
 
@@ -21,7 +21,7 @@ namespace bsStoreApp.WebApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("bsStoreApp.WebApi.Models.Book", b =>
+            modelBuilder.Entity("Entities.Models.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -44,20 +44,20 @@ namespace bsStoreApp.WebApi.Migrations
                         new
                         {
                             Id = 1,
-                            Price = 70m,
+                            Price = 75m,
                             Title = "Karagöz ve Hacıvat"
                         },
                         new
                         {
                             Id = 2,
-                            Price = 80m,
-                            Title = "Şeker Portakalı"
+                            Price = 120m,
+                            Title = "Mevlanadan Öğütler"
                         },
                         new
                         {
                             Id = 3,
-                            Price = 60m,
-                            Title = "Mesnevi"
+                            Price = 50m,
+                            Title = "Dede Korkut"
                         });
                 });
 #pragma warning restore 612, 618

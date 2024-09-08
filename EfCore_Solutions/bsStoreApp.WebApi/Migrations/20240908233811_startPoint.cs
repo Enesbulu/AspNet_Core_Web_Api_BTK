@@ -21,6 +21,21 @@ namespace bsStoreApp.WebApi.Migrations
                 {
                     table.PrimaryKey("PK_Books", x => x.Id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Books",
+                columns: new[] { "Id", "Price", "Title" },
+                values: new object[] { 1, 75m, "Karagöz ve Hacıvat" });
+
+            migrationBuilder.InsertData(
+                table: "Books",
+                columns: new[] { "Id", "Price", "Title" },
+                values: new object[] { 2, 120m, "Mevlanadan Öğütler" });
+
+            migrationBuilder.InsertData(
+                table: "Books",
+                columns: new[] { "Id", "Price", "Title" },
+                values: new object[] { 3, 50m, "Dede Korkut" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

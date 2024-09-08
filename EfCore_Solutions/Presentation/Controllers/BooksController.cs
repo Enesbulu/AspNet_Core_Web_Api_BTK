@@ -1,20 +1,30 @@
-﻿using bsStoreApp.WebApi.Models;
-using bsStoreApp.WebApi.Repositories;
+﻿using Entities.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Services.Contracts;
 
-namespace bsStoreApp.WebApi.Controllers
+namespace Presentation.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/books")]
     public class BooksController : ControllerBase
     {
-        private readonly RepositoryContext _context; //dbrepositori nesnemizden bir örnek oluşturulur.
+        private readonly IServiceManager _manager;
 
-        public BooksController(RepositoryContext context)
+        public BooksController(IServiceManager manager)
         {
-            _context = context; //ctor da çözme işlemi yapıldı.--Dependency Injection
+            _manager = manager;
         }
+
+        //private readonly IRepositoryManager _manager; //dbrepositori nesnemizden bir örnek oluşturulur.
+
+        //public BooksController( IRepositoryManager manager)
+
+        //{
+
+        //    _manager = manager;
+        //    //_context = context; //ctor da çözme işlemi yapıldı.--Dependency Injection
+        //}
 
         /// <summary>
         /// Bütün kitapları listeler
@@ -25,7 +35,7 @@ namespace bsStoreApp.WebApi.Controllers
         {
             try
             {
-                var books = _context.Books.ToList();
+                var books = _manager.BookService.GetAllBooks(false);
                 return Ok(books);
             }
             catch (Exception e)
@@ -41,25 +51,21 @@ namespace bsStoreApp.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("{id:int}")]
-        public IActionResult GetBook([FromRoute(Name = "id")] int id)
+        public IActionResult GetOneBook([FromRoute(Name = "id")] int id)
         {
             try
             {
-                Book book = _context.Books.Where<Book>(b => b.Id.Equals(id)).SingleOrDefault();
+                Book book = _manager.BookService.GetOneBookById(id, false);
 
                 if (book is null)
                     return NotFound();
                 return Ok(book);
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-
-
-
         }
 
 
@@ -75,8 +81,10 @@ namespace bsStoreApp.WebApi.Controllers
             {
                 if (book is null)
                     return BadRequest();    //http: 400;
-                _context.Books.Add(book);
-                _context.SaveChanges(); //yapılan değişikliği onaylar ve kaydeder.
+
+                _manager.BookService.CreateOneBook(book);
+                //_manager.Save();
+                //_context.SaveChanges(); //yapılan değişikliği onaylar ve kaydeder.
                 return StatusCode(201, book);
             }
             catch (Exception e)
@@ -84,7 +92,6 @@ namespace bsStoreApp.WebApi.Controllers
                 Console.WriteLine(e);
                 return BadRequest(e.Message);
             }
-
         }
 
 
@@ -99,22 +106,11 @@ namespace bsStoreApp.WebApi.Controllers
         {
             try
             {
-                //chech book => Girilen Id bilgisi ile kayıtlı kitapların içerisinden eşleme yapılır ve ilgili kitap çekilir.
-                var entity = _context.Books.Where(b => b.Id.Equals(id)).SingleOrDefault();
-                if (entity is null)
-                    return NotFound();  //httpStatus 404;  => Eğer id ile eşleşen kitap bulunamaz ise NotFound:HttpSatus400 döner.
+                if (book is null)
+                    return BadRequest();    //400
 
-                //chech id  => Girilen id İle girilen book bilgileri içerisinde bulunan book.id bilgisi eşleşme kontrolü yapılır.
-                if (id != book.Id)
-                    return BadRequest();  //httpStatus 400; => Eğer girilen bilgileri uyuşmaz ise BadRequest : HttpStatus400 döner.
-
-                //EF entity takibi yaptığı için bizim bunu yapmamıza gerek yok. 
-                entity.Title = book.Title;  //title ve price eşlemesi yapılması yeterli. İd db tarafından otomatik atanıyor.
-                entity.Price = book.Price;  //yani manuel mapping yapılıyor.
-
-                _context.SaveChanges();
-
-                return Ok(book);    // Sonuç başarılı olarak döner, body içerisinde güncellenen book verisini döner.
+                _manager.BookService.UpdateOneBook(book: book, id: id, tractChanges: true);
+                return NoContent();    // Sonuç başarılı olarak döner, body içerisinde güncellenen book verisini döner. -- 204
 
             }
             catch (Exception e)
@@ -134,20 +130,18 @@ namespace bsStoreApp.WebApi.Controllers
         {
             try
             {
-                var entity = _context.Books.Where(b => b.Id.Equals(id)).FirstOrDefault();
+                //var entity = _manager.BookService.GetOneBookById(id, false);
+                //if (entity is null)
+                //{
+                //    return NotFound(
+                //        new
+                //        {
+                //            statusCode = 404,
+                //            message = $"Book with id:{id} could not found."
+                //        }); //404
+                //}
 
-                if (entity is null)
-                {
-                    return NotFound(
-                        new
-                        {
-                            statusCode = 404,
-                            message = $"Book with id:{id} could not found."
-                        }); //404
-                }
-
-                _context.Books.Remove(entity);
-                _context.SaveChanges();
+                _manager.BookService.DeleteOneBook(id: id, trackChanges: false);
                 return NoContent();
 
             }
@@ -166,13 +160,13 @@ namespace bsStoreApp.WebApi.Controllers
             {
 
                 //Chech Entity => PArametre olarak verilen kitların varlığı kontrol edilir, verilen bilgilere ait kitap bulunuyor mu kontrolü.
-                var entity = _context.Books.Where(b => b.Id.Equals(id)).FirstOrDefault();
+                var entity = _manager.BookService.GetOneBookById(id, true);
 
                 if (entity is null) return NotFound(); //verilen bilgilere ait entity bulunamadığı için 404 döner.
 
                 bookPatch.ApplyTo(entity); // -> parçalama ve girilen verinin mevcut yapıya aktarılıp parçalı olarak güncelleme işlemi yapılır.
 
-                _context.SaveChanges();
+                _manager.BookService.UpdateOneBook(book: entity, id: id, tractChanges: false);
 
                 return NoContent(); //204 döner başarılı işlem.
             }
@@ -181,7 +175,6 @@ namespace bsStoreApp.WebApi.Controllers
                 Console.WriteLine(e);
                 throw new Exception(e.Message);
             }
-
         }
     }
 }

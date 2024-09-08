@@ -1,8 +1,8 @@
-﻿using bsStoreApp.WebApi.Config;
-using bsStoreApp.WebApi.Models;
+﻿using Entities.Models;
 using Microsoft.EntityFrameworkCore;
+using Repositories.EFCore.Config;
 
-namespace bsStoreApp.WebApi.Repositories
+namespace Repositories.EFCore
 {
     public class RepositoryContext : DbContext
     {
