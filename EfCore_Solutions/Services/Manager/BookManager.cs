@@ -7,10 +7,12 @@ namespace Services.Manager
     public class BookManager : IBookService
     {
         private readonly IRepositoryManager _manager;
+        private readonly ILoggerService _logger;
 
-        public BookManager(IRepositoryManager manager)
+        public BookManager(IRepositoryManager manager, ILoggerService logger)
         {
             _manager = manager;
+            _logger = logger;
         }
 
         public IEnumerable<Book> GetAllBooks(bool tractChanges)
@@ -25,9 +27,6 @@ namespace Services.Manager
 
         public Book CreateOneBook(Book book)
         {
-            if (book is null)
-                throw new ArgumentNullException(nameof(book));
-
             _manager.Book.CreateOneBook(book);
             _manager.Save();
             return book;
@@ -37,12 +36,17 @@ namespace Services.Manager
         {
             //check params
             if (book is null)
+            {
                 throw new ArgumentNullException(nameof(book));
-
+            }
             //check entity
             var entity = _manager.Book.GetOneBookById(id, tractChanges);
             if (entity is null)
-                throw new Exception($"Book with id {id} could not Found");
+            {
+                string msg = $"Book with id: {id} could not Found";
+                _logger.LogInfo(msg);
+                throw new Exception($"Book with id: {id} could not Found");
+            }
 
             entity.Title = book.Title;
             entity.Price = book.Price;
@@ -57,8 +61,10 @@ namespace Services.Manager
             //check entity
             var entity = _manager.Book.GetOneBookById(id, tractChanges);
             if (entity is null)
+            {
+                _logger.LogInfo($"The book with id: {id} could not found.");    //Bir alma ifadesi tanımlaması.
                 throw new Exception($"Book with id {id} could not Found");
-
+            }
 
             _manager.Book.Delete(entity);
             _manager.Save();

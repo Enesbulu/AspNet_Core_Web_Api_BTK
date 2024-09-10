@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using System.Diagnostics.CodeAnalysis;
+using Entities.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
@@ -31,6 +32,7 @@ namespace Presentation.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+
         public IActionResult GetAllBooks()
         {
             try
@@ -110,7 +112,7 @@ namespace Presentation.Controllers
                     return BadRequest();    //400
 
                 _manager.BookService.UpdateOneBook(book: book, id: id, tractChanges: true);
-                return NoContent();    // Sonuç başarılı olarak döner, body içerisinde güncellenen book verisini döner. -- 204
+                return NoContent();    // Sonuç başarılı olarak döner, body içerisinde veri dönmez. -- 204
 
             }
             catch (Exception e)
