@@ -13,5 +13,6 @@
 - Yazýlan extesion ile manager yapýsýs scoped olarak serviceCollection üzerinden çözümlendi. Bu þekilde yapýlan db iþlemleri manager üzerinden kontrol edilebilecek. Interfaceler üzerinden iþlem görmekte olacak.
 
 -..
--Yapýlan iþlemlerle WepAPI katmanýnda bulunan bütün klasörler ayrý olarak katmanlara ayrýldý. Bu katmanlarda Soyutlamalar ve manager/repository ile iþlemlere alýndý. Lazy Loding iþlemleri yapýldý. controller yapýsý ayrý bir katmana alýndý. Son yapýlan özellikle birlikte migration iþlemlerini tamamen webApi katmaný üzerinde çalýþacak þekilde configuration yapýldý.
--Entity katmaný, Repository Katmaný, Service Katmaný, Presentation Katmaný ve WebApi Katmaný olarak ayrýþtýrýldý.
+- Yapýlan iþlemlerle WepAPI katmanýnda bulunan bütün klasörler ayrý olarak katmanlara ayrýldý. Bu katmanlarda Soyutlamalar ve manager/repository ile iþlemlere alýndý. Lazy Loding iþlemleri yapýldý. controller yapýsý ayrý bir katmana alýndý. Son yapýlan özellikle birlikte migration iþlemlerini tamamen webApi katmaný üzerinde çalýþacak þekilde configuration yapýldý.
+- Entity katmaný, Repository Katmaný, Service Katmaný, Presentation Katmaný ve WebApi Katmaný olarak ayrýþtýrýldý.
+- AutoMapper paketinin service katmanýna kurulmasý, Record Type kullaným inceliði, Profile dosyasý oluþturulmasý, Servis kaydýnýn yapýlmasý,ServisManager üzerinde ilgili düzenlemeler yapýldý, Sunum katmaný düzenlemsi yapýldý. Bunlarla birlikte Mapper konusu incelendi.

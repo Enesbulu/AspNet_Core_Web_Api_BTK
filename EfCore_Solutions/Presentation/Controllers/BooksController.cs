@@ -1,4 +1,5 @@
-﻿using Entities.Exceptions;
+﻿using Entities.DataTransferObjects;
+using Entities.Exceptions;
 using Entities.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -75,15 +76,15 @@ namespace Presentation.Controllers
         /// Id bilgisine göre verilen kitapı günceller.
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="book"></param>
+        /// <param name="bookDto"></param>
         /// <returns></returns>
         [HttpPut("{id:int}")]
-        public IActionResult UpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] Book book)
+        public IActionResult UpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate bookDto)
         {
-            if (book is null)
+            if (bookDto is null)
                 return BadRequest();    //400
 
-            _manager.BookService.UpdateOneBook(book: book, id: id, tractChanges: true);
+            _manager.BookService.UpdateOneBook(bookDto: bookDto, id: id, tractChanges: true);
             return NoContent();    // Sonuç başarılı olarak döner, body içerisinde veri dönmez. -- 204
         }
 
@@ -123,7 +124,7 @@ namespace Presentation.Controllers
 
             bookPatch.ApplyTo(entity); // -> parçalama ve girilen verinin mevcut yapıya aktarılıp parçalı olarak güncelleme işlemi yapılır.
 
-            _manager.BookService.UpdateOneBook(book: entity, id: id, tractChanges: false);
+            _manager.BookService.UpdateOneBook(bookDto: new BookDtoForUpdate(Id: entity.Id, Title: entity.Title, Price: entity.Price), id: id, tractChanges: false);
 
             return NoContent(); //204 döner başarılı işlem.
 
