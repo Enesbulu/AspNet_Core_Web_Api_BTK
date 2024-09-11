@@ -20,9 +20,11 @@ namespace Services.Manager
             _mapper = mapper;
         }
 
-        public IEnumerable<Book> GetAllBooks(bool tractChanges)
+        public IEnumerable<BookDto> GetAllBooks(bool tractChanges)
         {
-            return _manager.Book.GetAllBooks(tractChanges);
+            IQueryable<Book> books = _manager.Book.GetAllBooks(tractChanges);
+
+            return _mapper.Map<IEnumerable<BookDto>>(books);
         }
 
         public Book GetOneBookById(int id, bool tractChanges)

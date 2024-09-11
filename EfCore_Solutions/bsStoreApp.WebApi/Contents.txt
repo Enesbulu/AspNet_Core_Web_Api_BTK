@@ -15,3 +15,4 @@
 - Yeni seedDatalar ile migration yapýldý.
 - BookController dosyasý oluþturuldu ve action metodlar yazýldý. DEpendency Injection yapýldý.
 - Veri manipulasyonu için action metodlar yazýldý. Gerekli paketler indirildi ve implement edildi.
+- Ýçerik pazarlýðý konusu incelendi. Ýstek yapýsýna göre api geri dönüþlerinin application/xml, application/json, text/csv gibi farklý formatlara uygun cevaplar vermesini ve içerik dönmesi saðlandý. Bu konudaki konfigurasyonlar yapýldý.

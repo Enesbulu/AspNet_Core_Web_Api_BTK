@@ -6,7 +6,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nlog.config")); //Nlog config dosyasýnýn tanýmlanmasý.
-builder.Services.AddControllers()
+builder.Services.AddControllers(config =>
+{
+    config.RespectBrowserAcceptHeader = true;   //içerik pazarlamaya açýk hale getirilmesi iþlemi.
+    config.ReturnHttpNotAcceptable = true; // bu þekilde dönüþ kodunda uygun hata kodunun verilmesi saðlandý. PAzarlýk yapmaya baþlar. --HTTP406 
+})
+    .AddCustomCsvFormatter()    //Csv formatýnda çýktý verebilecek þekilde yapýlan altyapýnýn extentions ile IOC ye eklenmesi.
+    .AddXmlDataContractSerializerFormatters()   //XML Formatýnda serilazer iþlemi yapmak için IOC ye kayýt yapýldý.
     .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
     .AddNewtonsoftJson();   //Patch iþlem tipi için gerekli paket configuration yapýldý.
 
