@@ -17,3 +17,5 @@
 - Entity katmaný, Repository Katmaný, Service Katmaný, Presentation Katmaný ve WebApi Katmaný olarak ayrýþtýrýldý.
 - AutoMapper paketinin service katmanýna kurulmasý, Record Type kullaným inceliði, Profile dosyasý oluþturulmasý, Servis kaydýnýn yapýlmasý,ServisManager üzerinde ilgili düzenlemeler yapýldý, Sunum katmaný düzenlemsi yapýldý. Bunlarla birlikte Mapper konusu incelendi.
 - Validation iþlemleri üzerinde duruldu. Custom Model State yapýlarý eklendi.
+- Asenkron Programlama mantýðý uygulandý.Bütün katmanlarda uygun geliþtirmeler ve deðiþiklikler yapýldý.
+
