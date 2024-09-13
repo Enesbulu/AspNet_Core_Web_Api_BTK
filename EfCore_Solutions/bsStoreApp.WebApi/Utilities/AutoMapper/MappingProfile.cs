@@ -10,6 +10,7 @@ namespace bsStoreApp.WebApi.Utilities.AutoMapper
         {
             CreateMap<BookDtoForUpdate, Book>().ReverseMap();
             CreateMap<BookDto, Book>().ReverseMap();
+            CreateMap<BookDtoForInsetion, Book>().ReverseMap();
         }
 
     }

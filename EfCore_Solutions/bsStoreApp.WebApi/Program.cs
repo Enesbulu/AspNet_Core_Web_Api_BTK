@@ -1,4 +1,5 @@
 using bsStoreApp.WebApi.Extensions;
+using Microsoft.AspNetCore.Mvc;
 using NLog;
 using Services.Contracts;
 
@@ -15,6 +16,12 @@ builder.Services.AddControllers(config =>
     .AddXmlDataContractSerializerFormatters()   //XML Formatýnda serilazer iþlemi yapmak için IOC ye kayýt yapýldý.
     .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
     .AddNewtonsoftJson();   //Patch iþlem tipi için gerekli paket configuration yapýldý.
+
+builder.Services.Configure<ApiBehaviorOptions>(opt =>
+{
+    opt.SuppressModelStateInvalidFilter = true;
+});
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

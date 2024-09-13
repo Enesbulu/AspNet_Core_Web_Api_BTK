@@ -1,6 +1,5 @@
 ﻿using Entities.DataTransferObjects;
 using Entities.Exceptions;
-using Entities.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
@@ -17,13 +16,6 @@ namespace Presentation.Controllers
         {
             _manager = manager;
         }
-
-        //private readonly IRepositoryManager _manager; //dbrepositori nesnemizden bir örnek oluşturulur.
-        //public BooksController( IRepositoryManager manager)
-        //{
-        //    _manager = manager;
-        //    //_context = context; //ctor da çözme işlemi yapıldı.--Dependency Injection
-        //}
 
         /// <summary>
         /// Bütün kitapları listeler
@@ -46,7 +38,7 @@ namespace Presentation.Controllers
         public IActionResult GetOneBook([FromRoute(Name = "id")] int id)
         {
 
-            Book book = _manager.BookService.GetOneBookById(id, false);
+            var book = _manager.BookService.GetOneBookById(id, false);
 
             if (book is null)
                 throw new BookNotFoundException(id);
@@ -57,18 +49,21 @@ namespace Presentation.Controllers
         /// <summary>
         /// Yeni bir kitap eklenmesini sağlar.
         /// </summary>
-        /// <param name="book"></param>
+        /// <param name="bookDto"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult CreateOneBook([FromBody] Book book)
+        public IActionResult CreateOneBook([FromBody] BookDtoForInsetion bookDto)
         {
-            if (book is null)
+            if (bookDto is null)
                 return BadRequest();    //http: 400;
 
-            _manager.BookService.CreateOneBook(book);
+            if (!ModelState.IsValid)
+                return UnprocessableEntity(ModelState); //http: 422;
+
+            var book = _manager.BookService.CreateOneBook(bookDto);
             //_manager.Save();
             //_context.SaveChanges(); //yapılan değişikliği onaylar ve kaydeder.
-            return StatusCode(201, book);
+            return StatusCode(201, bookDto);    //CreatedAtRoute()
         }
 
 
@@ -82,9 +77,13 @@ namespace Presentation.Controllers
         public IActionResult UpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate bookDto)
         {
             if (bookDto is null)
-                return BadRequest();    //400
+                return BadRequest();    //http: 400;
 
-            _manager.BookService.UpdateOneBook(bookDto: bookDto, id: id, tractChanges: true);
+
+            if (!ModelState.IsValid)
+                return UnprocessableEntity(ModelState); //http: 422;
+
+            _manager.BookService.UpdateOneBook(bookDto: bookDto, id: id, tractChanges: false);
             return NoContent();    // Sonuç başarılı olarak döner, body içerisinde veri dönmez. -- 204
         }
 
@@ -115,16 +114,31 @@ namespace Presentation.Controllers
 
 
         [HttpPatch("{id:int}")]
-        public IActionResult PartiallyUpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] JsonPatchDocument<Book> bookPatch)
+        public IActionResult PartiallyUpdateOneBook([FromRoute(Name = "id")] int id, [FromBody] JsonPatchDocument<BookDtoForUpdate> bookPatch)
         {
-            //Chech Entity => PArametre olarak verilen kitların varlığı kontrol edilir, verilen bilgilere ait kitap bulunuyor mu kontrolü.
-            var entity = _manager.BookService.GetOneBookById(id, true);
+            if (bookPatch is null)
+                return BadRequest();    //http: 400;
 
-            //if (entity is null) return NotFound(); //verilen bilgilere ait entity bulunamadığı için 404 döner.
 
-            bookPatch.ApplyTo(entity); // -> parçalama ve girilen verinin mevcut yapıya aktarılıp parçalı olarak güncelleme işlemi yapılır.
+            ////Chech Entity 
+            //var bookDto = _manager.BookService.GetOneBookById(id, true);
+            var result = _manager.BookService.GetOneBookForPatch(id, false);
 
-            _manager.BookService.UpdateOneBook(bookDto: new BookDtoForUpdate(Id: entity.Id, Title: entity.Title, Price: entity.Price), id: id, tractChanges: false);
+            bookPatch.ApplyTo(result.bookDtoForUpdate, ModelState);                 // -> parçalama ve girilen verinin mevcut yapıya aktarılıp parçalı olarak güncelleme işlemi yapılır.
+
+            TryValidateModel(result.bookDtoForUpdate);
+
+            if (!ModelState.IsValid)
+                return UnprocessableEntity();   //http: 422;
+
+            //_manager.BookService.UpdateOneBook(id: id, tractChanges: false, bookDto: new BookDtoForUpdate()
+            //{
+            //    Id = bookDto.Id,
+            //    Title = bookDto.Title,
+            //    Price = bookDto.Price,
+            //});
+
+            _manager.BookService.SaveChangesForPatch(bookDtoForUpdate: result.bookDtoForUpdate, book: result.book);
 
             return NoContent(); //204 döner başarılı işlem.
 
