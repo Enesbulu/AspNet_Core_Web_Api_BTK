@@ -3,11 +3,13 @@ using Entities.Exceptions;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Services.Contracts;
+using Presentation.ActionFilters;
 
 namespace Presentation.Controllers
 {
     [ApiController]
     [Route("api/books")]
+    [ServiceFilter(typeof(LogFilterAttribute))]
     public class BooksController : ControllerBase
     {
         private readonly IServiceManager _manager;
@@ -51,13 +53,14 @@ namespace Presentation.Controllers
         /// <param name="bookDto"></param>
         /// <returns></returns>
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateOneBookAsync([FromBody] BookDtoForInsetion bookDto)
         {
-            if (bookDto is null)
-                return BadRequest();    //http: 400;
-
-            if (!ModelState.IsValid)
-                return UnprocessableEntity(ModelState); //http: 422;
+            /// => ValidationFilterAttribute içerisinde gerçekleştirilen validation işlemleri, burada kontrole gerek kalmadı.
+            //if (bookDto is null)
+            //    return BadRequest();    //http: 400;
+            //if (!ModelState.IsValid)
+            //    return UnprocessableEntity(ModelState); //http: 422;
 
             var book = await _manager.BookService.CreateOneBookAsync(bookDto);
 
@@ -72,14 +75,14 @@ namespace Presentation.Controllers
         /// <param name="bookDto"></param>
         /// <returns></returns>
         [HttpPut("{id:int}")]
+        [ServiceFilter (typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateOneBookAsync([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate bookDto)
         {
-            if (bookDto is null)
-                return BadRequest();    //http: 400;
-
-
-            if (!ModelState.IsValid)
-                return UnprocessableEntity(ModelState); //http: 422;
+            /// => ValidationFilterAttribute içerisinde gerçekleştirilen validation işlemleri, burada kontrole gerek kalmadı.
+            //if (bookDto is null)
+            //    return BadRequest();    //http: 400;
+            //if (!ModelState.IsValid)
+            //    return UnprocessableEntity(ModelState); //http: 422;
 
             await _manager.BookService.UpdateOneBookAsync(bookDto: bookDto, id: id, tractChanges: false);
             return NoContent();    // Sonuç başarılı olarak döner, body içerisinde veri dönmez. -- 204
@@ -118,5 +121,6 @@ namespace Presentation.Controllers
             return NoContent(); //204 döner başarılı işlem.
 
         }
+
     }
 }

@@ -17,6 +17,9 @@ builder.Services.AddControllers(config =>
     .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
     .AddNewtonsoftJson();   //Patch iþlem tipi için gerekli paket configuration yapýldý.
 
+//builder.Services.AddScoped<ValidationFilterAttribute>();    //Custsom Validation Attribute yapýsýnýn IOC ye kaydýnýn yapýlmasý
+builder.Services.ConfigureActionFilters(); //Custom olarak yazýlan Filter Attribute yapýlarýnýn toplu olarak IOC ye kaydýnýn yapýllmasý.
+
 builder.Services.Configure<ApiBehaviorOptions>(opt =>
 {
     opt.SuppressModelStateInvalidFilter = true;
