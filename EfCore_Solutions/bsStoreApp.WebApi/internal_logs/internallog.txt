@@ -210,3 +210,17 @@
 2024-09-16 03:18:26.3122 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
 2024-09-16 03:18:26.3280 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\enesb\source\repos\AspNet_Core_Web_Api_BTK\EfCore_Solutions\bsStoreApp.WebApi\nlog.config
 2024-09-16 03:18:26.3426 Info Configuration initialized.
+2024-09-17 00:22:22.5145 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-09-17 00:22:22.5479 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-09-17 00:22:22.5672 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\enesb\source\repos\AspNet_Core_Web_Api_BTK\EfCore_Solutions\bsStoreApp.WebApi\nlog.config
+2024-09-17 00:22:22.5818 Info Configuration initialized.
+2024-09-17 00:30:00.6645 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-09-17 00:30:00.6912 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-09-17 00:30:00.7084 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\enesb\source\repos\AspNet_Core_Web_Api_BTK\EfCore_Solutions\bsStoreApp.WebApi\nlog.config
+2024-09-17 00:30:00.7272 Info Configuration initialized.
+2024-09-17 00:41:13.6262 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-09-17 00:41:13.6407 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-09-17 00:41:13.6407 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\enesb\source\repos\AspNet_Core_Web_Api_BTK\EfCore_Solutions\bsStoreApp.WebApi\nlog.config
+2024-09-17 00:41:13.6610 Info Configuration initialized.
+2024-09-17 00:43:58.5034 Info AppDomain Shutting down. LogFactory closing...
+2024-09-17 00:43:58.5175 Info LogFactory has been closed.

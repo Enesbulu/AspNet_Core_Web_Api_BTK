@@ -20,3 +20,4 @@
 - Asenkron Programlama mantýðý uygulandý.Bütün katmanlarda uygun geliþtirmeler ve deðiþiklikler yapýldý.
 - ActionFilter attiributer üzerinde geliþtirme yapýldý. Action Filter Implementation kullanýldý.Validation ve Loggin iþlemleri custom Filters yazýldý. 
 - Pagination iþlemi gerçekleþtirildi. Yapýlan isstek için kaynaðýn istenilen þekilde bölünmesi ve ilgili aralýkta sonuç dönðlmesi saðlandý.
+- Api üzerinde Filtreleme iþlemleri yapýldý. Örnek olarak minimum ve maksimum fiyat filtreleme özelliði saðlandý. Postman üzerinde testleri yapýldý.
