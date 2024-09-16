@@ -1,9 +1,11 @@
 ﻿using Entities.DataTransferObjects;
 using Entities.Exceptions;
+using Entities.RequestFeatures;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Services.Contracts;
 using Presentation.ActionFilters;
+using Services.Contracts;
+using System.Text.Json;
 
 namespace Presentation.Controllers
 {
@@ -24,11 +26,12 @@ namespace Presentation.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetAllBooksAsync()
+        public async Task<IActionResult> GetAllBooksAsync([FromQuery] BookParametres bookParametres)
         {
+            var pagedResult = await _manager.BookService.GetAllBooksAsync(bookParametres: bookParametres, trackChanges: false);
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
 
-            var books = await _manager.BookService.GetAllBooksAsync(false);
-            return Ok(books);
+            return Ok(pagedResult.books);
         }
 
         /// <summary>
@@ -75,7 +78,7 @@ namespace Presentation.Controllers
         /// <param name="bookDto"></param>
         /// <returns></returns>
         [HttpPut("{id:int}")]
-        [ServiceFilter (typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateOneBookAsync([FromRoute(Name = "id")] int id, [FromBody] BookDtoForUpdate bookDto)
         {
             /// => ValidationFilterAttribute içerisinde gerçekleştirilen validation işlemleri, burada kontrole gerek kalmadı.
@@ -96,7 +99,7 @@ namespace Presentation.Controllers
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteOneBook([FromRoute(Name = "id")] int id)
         {
-           await _manager.BookService.DeleteOneBookAsync(id: id, trackChanges: false);
+            await _manager.BookService.DeleteOneBookAsync(id: id, trackChanges: false);
             return NoContent();
         }
 
@@ -107,7 +110,7 @@ namespace Presentation.Controllers
             if (bookPatch is null)
                 return BadRequest();    //http: 400;
 
-            var result =await _manager.BookService.GetOneBookForPatchAsync(id, false);
+            var result = await _manager.BookService.GetOneBookForPatchAsync(id, false);
 
             bookPatch.ApplyTo(result.bookDtoForUpdate, ModelState);                 // -> parçalama ve girilen verinin mevcut yapıya aktarılıp parçalı olarak güncelleme işlemi yapılır.
 

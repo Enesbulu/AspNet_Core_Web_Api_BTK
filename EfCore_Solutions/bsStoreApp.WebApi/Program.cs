@@ -19,7 +19,7 @@ builder.Services.AddControllers(config =>
 
 //builder.Services.AddScoped<ValidationFilterAttribute>();    //Custsom Validation Attribute yapýsýnýn IOC ye kaydýnýn yapýlmasý
 builder.Services.ConfigureActionFilters(); //Custom olarak yazýlan Filter Attribute yapýlarýnýn toplu olarak IOC ye kaydýnýn yapýllmasý.
-
+builder.Services.ConfigureCors();   //X-Pagination kullanýmý/Paginatiýn için gerekli eklentinin dahil edilmesi.
 builder.Services.Configure<ApiBehaviorOptions>(opt =>
 {
     opt.SuppressModelStateInvalidFilter = true;
@@ -52,7 +52,7 @@ if (app.Environment.IsProduction())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("CorsPolicy");
 app.UseAuthorization();
 
 app.MapControllers();

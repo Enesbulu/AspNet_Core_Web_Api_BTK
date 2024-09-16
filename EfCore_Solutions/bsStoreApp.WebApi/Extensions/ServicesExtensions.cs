@@ -27,5 +27,17 @@ namespace bsStoreApp.WebApi.Extensions
             services.AddScoped<ValidationFilterAttribute>();     //Custsom Validation Attribute yapısının IOC ye kaydının yapılması
             services.AddSingleton<LogFilterAttribute>();    //Log Filter Yapısının eklenmesi
         }
+        public static void ConfigureCors(this IServiceCollection services)
+        {
+            services.AddCors(
+                opt => opt.AddPolicy("CorsPolicy", builder =>
+                builder.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .WithExposedHeaders("X-Pagination")
+
+                )
+            );
+        }
     }
 }
