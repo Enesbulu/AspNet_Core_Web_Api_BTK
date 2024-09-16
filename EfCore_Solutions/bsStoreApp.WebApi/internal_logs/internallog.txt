@@ -230,3 +230,35 @@
 2024-09-17 00:59:07.5530 Info Configuration initialized.
 2024-09-17 01:01:43.9254 Info AppDomain Shutting down. LogFactory closing...
 2024-09-17 01:01:43.9412 Info LogFactory has been closed.
+2024-09-17 02:05:24.8836 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-09-17 02:05:24.9046 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-09-17 02:05:24.9280 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\enesb\source\repos\AspNet_Core_Web_Api_BTK\EfCore_Solutions\bsStoreApp.WebApi\nlog.config
+2024-09-17 02:05:24.9485 Info Configuration initialized.
+2024-09-17 02:11:59.8720 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-09-17 02:11:59.8879 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-09-17 02:11:59.8993 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\enesb\source\repos\AspNet_Core_Web_Api_BTK\EfCore_Solutions\bsStoreApp.WebApi\nlog.config
+2024-09-17 02:11:59.9086 Info Configuration initialized.
+2024-09-17 02:14:05.3635 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-09-17 02:14:05.3748 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-09-17 02:14:05.3748 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\enesb\source\repos\AspNet_Core_Web_Api_BTK\EfCore_Solutions\bsStoreApp.WebApi\nlog.config
+2024-09-17 02:14:05.3963 Info Configuration initialized.
+2024-09-17 02:15:22.9188 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-09-17 02:15:22.9313 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-09-17 02:15:22.9444 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\enesb\source\repos\AspNet_Core_Web_Api_BTK\EfCore_Solutions\bsStoreApp.WebApi\nlog.config
+2024-09-17 02:15:22.9569 Info Configuration initialized.
+2024-09-17 02:17:30.4296 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-09-17 02:17:30.4548 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-09-17 02:17:30.4748 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\enesb\source\repos\AspNet_Core_Web_Api_BTK\EfCore_Solutions\bsStoreApp.WebApi\nlog.config
+2024-09-17 02:17:30.4970 Info Configuration initialized.
+2024-09-17 02:20:34.6826 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-09-17 02:20:34.7046 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-09-17 02:20:34.7195 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\enesb\source\repos\AspNet_Core_Web_Api_BTK\EfCore_Solutions\bsStoreApp.WebApi\nlog.config
+2024-09-17 02:20:34.7195 Info Configuration initialized.
+2024-09-17 02:20:57.5083 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-09-17 02:20:57.5237 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-09-17 02:20:57.5356 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\enesb\source\repos\AspNet_Core_Web_Api_BTK\EfCore_Solutions\bsStoreApp.WebApi\nlog.config
+2024-09-17 02:20:57.5356 Info Configuration initialized.
+2024-09-17 02:31:19.4021 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-09-17 02:31:19.4181 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-09-17 02:31:19.4335 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\enesb\source\repos\AspNet_Core_Web_Api_BTK\EfCore_Solutions\bsStoreApp.WebApi\nlog.config
+2024-09-17 02:31:19.4495 Info Configuration initialized.
