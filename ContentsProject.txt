@@ -23,3 +23,4 @@
 - Api üzerinde Filtreleme iþlemleri yapýldý. Örnek olarak minimum ve maksimum fiyat filtreleme özelliði saðlandý. Postman üzerinde testleri yapýldý.
 - Api endpoint yapýsýnda arama özelliði dahil edildi. istenilirse büyük/küçük ayrýmý yapýlmadan arama yapma iþlemi yapýlabilir durumda.
 - Dinamik olarak sýralama ifadeleri yazýldý. Sonuçlar için verilen sýralama özelliklerine göre "Query String" ile  saðlandý.
+- Veri þekillendirilme üzerine geliþtirilnme yapýldý. Service yapýlan istek þekline göre, döndürülen sonucun veri içeriði(property olarak) þekillendirilmesi saðlandý. Esnek bir yapýda isteðe baðlý þekillendirme veya tüm özelliklerin çaðýrýlmasý mümkündür.

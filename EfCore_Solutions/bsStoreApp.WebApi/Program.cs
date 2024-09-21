@@ -34,6 +34,7 @@ builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager(); //Manager Yapýsý IOC ye kaydý yapýlýr.
 builder.Services.ConfigureLoggerService();
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.ConfigureDataShaper();
 
 var app = builder.Build();
 var logger = app.Services.GetRequiredService<ILoggerService>();

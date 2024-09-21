@@ -1,12 +1,13 @@
 ﻿using Entities.DataTransferObjects;
 using Entities.Models;
 using Entities.RequestFeatures;
+using System.Dynamic;
 
 namespace Services.Contracts
 {
     public interface IBookService
     {
-        Task<(IEnumerable<BookDto> books, MetaData metaData)> GetAllBooksAsync(BookParametres bookParametres, bool trackChanges);
+        Task<(IEnumerable<ExpandoObject> books, MetaData metaData)> GetAllBooksAsync(BookParametres bookParametres, bool trackChanges);
         Task<BookDto> GetOneBooksIdAsync(int id, bool trackChanges);
         Task<BookDto> CreateOneBookAsync(BookDtoForInsetion book);
         Task UpdateOneBookAsync(int id, BookDtoForUpdate bookDto, bool tractChanges);
