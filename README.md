@@ -1,2 +1,1 @@
-Btk Akademide Bulunan Zafer CÖMERT Hocanın Asp.Net Core Web Api Eğitim videosu ile eşdeğer eğitim ve geliştirme örnek çalışmalarını içerir.
-Proje yapıları altında, her proje için yapılan işlemler ve adımlar ile ilgili not bilgiler bulunur.
+Bu proje, ölçeklenebilir API mimarileri için geliştirdiğim, SOLID prensiplerini ve Best Practice'leri içeren bir şablondur.
